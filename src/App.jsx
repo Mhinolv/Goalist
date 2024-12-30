@@ -7,7 +7,10 @@ function App() {
   const [showForm, setShowForm] = useState(false)
   const [expandedGoals, setExpandedGoals] = useState(new Set())
   const [quote, setQuote] = useState({ q: "The journey of a thousand miles begins with one step.", a: "Lao Tzu" })
+  const [editingId, setEditingId] = useState(null)
+  const [editText, setEditText] = useState('')
   const formRef = useRef(null)
+  const editInputRef = useRef(null)
   const [newGoal, setNewGoal] = useState({
     text: '',
     days: '',
@@ -84,7 +87,7 @@ function App() {
           behavior: 'smooth',
           block: 'center'
         })
-      }, 100) // Small delay to ensure form is visible first
+      }, 100)
     }
   }
 
@@ -111,6 +114,32 @@ function App() {
       consequences: ''
     })
     setShowForm(false)
+  }
+
+  const startEditing = (goal) => {
+    setEditingId(goal.id)
+    setEditText(goal.text)
+    setTimeout(() => {
+      if (editInputRef.current) {
+        editInputRef.current.focus()
+      }
+    }, 50)
+  }
+
+  const handleEditSubmit = (e) => {
+    e.preventDefault()
+    if (editText.trim()) {
+      setGoals(goals.map(goal =>
+        goal.id === editingId ? { ...goal, text: editText.trim() } : goal
+      ))
+      setEditingId(null)
+    }
+  }
+
+  const handleEditKeyDown = (e) => {
+    if (e.key === 'Escape') {
+      setEditingId(null)
+    }
   }
 
   const toggleGoalExpansion = (id) => {
@@ -141,7 +170,6 @@ function App() {
       goal.id === id ? { ...goal, completed: !goal.completed } : goal
     ))
 
-    // Only trigger confetti when marking as complete, not when unchecking
     if (!wasCompleted) {
       triggerConfetti()
     }
@@ -241,7 +269,6 @@ function App() {
         <button type="submit">Add Goal</button>
       </form>
 
-      {/* Rest of the component remains the same */}
       <div className="goals-list">
         {goals.map(goal => (
           <div key={goal.id}>
@@ -257,8 +284,35 @@ function App() {
                 checked={goal.completed}
                 onChange={() => toggleCompleted(goal.id)}
               />
-              <div style={{ textDecoration: goal.completed ? 'line-through' : 'none' }}>
-                {goal.text}
+              <div className="goal-text-container">
+                {editingId === goal.id ? (
+                  <form onSubmit={handleEditSubmit} style={{ margin: 0 }}>
+                    <input
+                      ref={editInputRef}
+                      type="text"
+                      value={editText}
+                      onChange={(e) => setEditText(e.target.value)}
+                      onKeyDown={handleEditKeyDown}
+                      onBlur={handleEditSubmit}
+                      className="edit-input"
+                    />
+                  </form>
+                ) : (
+                  <>
+                    <span 
+                      className="goal-text"
+                      style={{ textDecoration: goal.completed ? 'line-through' : 'none' }}
+                    >
+                      {goal.text}
+                    </span>
+                    <button 
+                      className="edit-btn"
+                      onClick={() => startEditing(goal)}
+                    >
+                      <span className="material-icons">edit</span>
+                    </button>
+                  </>
+                )}
               </div>
               <select
                 value={goal.status}

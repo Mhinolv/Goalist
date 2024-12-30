@@ -39,6 +39,7 @@ select {
   color: #000;
   margin-bottom: 0;
   width: auto;
+  min-width: 120px;
 }
 
 textarea {
@@ -57,10 +58,16 @@ textarea {
   margin-bottom: 30px;
 }
 
+.header h1 {
+  font-size: 2.5em;
+  margin-bottom: 10px;
+}
+
 .tagline {
   font-style: italic;
-  margin-top: -20px;
+  margin-top: 0;
   margin-bottom: 30px;
+  font-size: 1.1em;
 }
 
 .quote-container {
@@ -89,6 +96,11 @@ textarea {
   border: 1px solid #000;
 }
 
+.summary h2 {
+  margin-top: 0;
+  margin-bottom: 16px;
+}
+
 .summary-content {
   display: flex;
   justify-content: space-between;
@@ -100,6 +112,8 @@ textarea {
 .add-goal-button {
   width: 100%;
   margin-bottom: 20px;
+  font-size: 1em;
+  padding: 12px;
 }
 
 .goal-form {
@@ -107,6 +121,7 @@ textarea {
   padding: 20px;
   border: 1px solid #000;
   display: none;
+  background: #fff;
 }
 
 .goal-form.visible {
@@ -132,7 +147,7 @@ textarea {
 .goal-item {
   display: grid;
   grid-template-columns: auto auto 1fr auto auto auto auto;
-  gap: 20px;
+  gap: 16px;
   align-items: center;
   padding: 16px;
   border: 1px solid #eee;
@@ -143,6 +158,28 @@ textarea {
   width: 20px;
   height: 20px;
   margin: 0;
+}
+
+.goal-text-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+.goal-text {
+  margin: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.edit-input {
+  margin: 0;
+  padding: 4px 8px;
+  font-size: inherit;
+  width: 100%;
+  min-width: 200px;
 }
 
 .goal-details {
@@ -171,7 +208,7 @@ textarea {
   white-space: nowrap;
 }
 
-.delete-btn {
+.delete-btn, .edit-btn {
   background: none;
   border: none;
   padding: 4px;
@@ -183,8 +220,13 @@ textarea {
   margin: 0;
 }
 
-.delete-btn:hover {
-  color: #666;
+.edit-btn {
+  opacity: 0.5;
+}
+
+.delete-btn:hover, .edit-btn:hover {
+  opacity: 1;
+  background: none;
 }
 
 .material-icons {
@@ -201,4 +243,9 @@ textarea {
 
 .caret.expanded {
   transform: rotate(90deg);
+}
+
+button[type="submit"] {
+  font-size: 1em;
+  padding: 12px 24px;
 }
