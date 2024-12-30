@@ -1,0 +1,204 @@
+:root {
+  font-family: 'Courier New', Courier, monospace;
+  line-height: 1.5;
+  font-weight: 400;
+  color: #000;
+  background-color: #fff;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+button, select {
+  font-family: 'Courier New', Courier, monospace;
+  background: #000;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  cursor: pointer;
+}
+
+button:hover, select:hover {
+  opacity: 0.8;
+}
+
+input, select, textarea {
+  font-family: 'Courier New', Courier, monospace;
+  padding: 8px;
+  margin-bottom: 12px;
+  border: 1px solid #000;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+select {
+  background: #fff;
+  color: #000;
+  margin-bottom: 0;
+  width: auto;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 60px;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.tagline {
+  font-style: italic;
+  margin-top: -20px;
+  margin-bottom: 30px;
+}
+
+.quote-container {
+  text-align: center;
+  margin-bottom: 30px;
+  padding: 20px;
+  border: 1px solid #eee;
+  background-color: #fafafa;
+}
+
+.quote-text {
+  font-size: 0.9em;
+  color: #333;
+  margin-bottom: 8px;
+}
+
+.quote-author {
+  font-size: 0.8em;
+  color: #666;
+  font-style: italic;
+}
+
+.summary {
+  margin-bottom: 30px;
+  padding: 20px;
+  border: 1px solid #000;
+}
+
+.summary-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.add-goal-button {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.goal-form {
+  margin-bottom: 30px;
+  padding: 20px;
+  border: 1px solid #000;
+  display: none;
+}
+
+.goal-form.visible {
+  display: block;
+}
+
+.form-row {
+  margin-bottom: 16px;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+.goals-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.goal-item {
+  display: grid;
+  grid-template-columns: auto auto 1fr auto auto auto auto;
+  gap: 20px;
+  align-items: center;
+  padding: 16px;
+  border: 1px solid #eee;
+  background-color: #fff;
+}
+
+.goal-item input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  margin: 0;
+}
+
+.goal-details {
+  display: none;
+  grid-column: 1 / -1;
+  padding: 16px;
+  background: #f9f9f9;
+  margin-top: 0;
+  border-top: 1px solid #eee;
+}
+
+.goal-details.visible {
+  display: block;
+}
+
+.goal-details p {
+  margin: 8px 0;
+}
+
+.percentage {
+  white-space: nowrap;
+  font-weight: bold;
+}
+
+.days-info {
+  white-space: nowrap;
+}
+
+.delete-btn {
+  background: none;
+  border: none;
+  padding: 4px;
+  cursor: pointer;
+  color: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+}
+
+.delete-btn:hover {
+  color: #666;
+}
+
+.material-icons {
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.caret {
+  transition: transform 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.caret.expanded {
+  transform: rotate(90deg);
+}
